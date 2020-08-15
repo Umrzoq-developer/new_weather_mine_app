@@ -71,14 +71,14 @@ const Main = ({fetching, errorFetch, data, cityWeather, getData, deleteItem}) =>
                         handleChange={handleChange}
                         city={city}
                     />
-                    {(errorFetch || cityWeather.main) && <Text style={{color: 'red'}}>Enter a valid City Name</Text>}
                 </Header>
                 <Content className='main-content position-relative'>
                     <div
                         className="site-layout-background position-relative"
                         style={{padding: 24, minHeight: 360}}
                     >
-                        {cityWeather.main ? (
+                        {errorFetch && <Text style={{color: 'red'}}>Enter a valid City Name</Text>}
+                        {cityWeather.main && (
                             <CardWeather
                                 humidity={cityWeather.main.humidity}
                                 temp={cityWeather.main.temp}
@@ -86,8 +86,6 @@ const Main = ({fetching, errorFetch, data, cityWeather, getData, deleteItem}) =>
                                 temp_min={cityWeather.main.temp_min}
                                 name={cityWeather.name}
                             />
-                        ) : (
-                            <Text style={{color: 'red'}}>Enter a valid City Name</Text>
                         )}
                     </div>
                 </Content>

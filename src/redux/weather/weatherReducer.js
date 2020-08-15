@@ -19,6 +19,7 @@ export const weatherReducer = (state = initialState, action) => {
             return {
                 ...state,
                 fetching: false,
+                errorFetch: false,
                 data: [...state.data, action.payload],
                 cityWeather: action.payload
             };
