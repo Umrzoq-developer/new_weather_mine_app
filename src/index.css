@@ -25,5 +25,6 @@
 .main-content {
   background-image: url("./assets/day.png");
   background-size: cover;
+  background-attachment: fixed;
   background-repeat: no-repeat;
 }

@@ -1,10 +1,11 @@
 
-import { BEGIN_FETCH, FETCHED, ERROR_FETCH } from './weatherAction';
+import {BEGIN_FETCH, FETCHED, ERROR_FETCH, DELETE_ITEM, CHOOSE_COUNTRY} from './weatherAction';
 
 const initialState = {
     fetching: false,
     errorFetch: false,
-    data: []
+    data: [],
+    cityWeather: []
 };
 
 export const weatherReducer = (state = initialState, action) => {
@@ -18,14 +19,24 @@ export const weatherReducer = (state = initialState, action) => {
             return {
                 ...state,
                 fetching: false,
-                data: action.payload
+                data: [...state.data, action.payload],
+                cityWeather: action.payload
             };
         case ERROR_FETCH:
             return {
                 ...state,
                 fetching: false,
-                data: [],
-                errorFetch: true
+                errorFetch: true,
+                cityWeather: []
+            };
+        case DELETE_ITEM:
+            return {
+                ...state,
+                data: state.data.filter(data => data.id !== action.payload)
+            };
+        case CHOOSE_COUNTRY:
+            return {
+                ...state
             };
         default:
             return state
